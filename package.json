@@ -1,0 +1,81 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "react-native-background-task",
+        "scope": null,
+        "escapedName": "react-native-background-task",
+        "name": "react-native-background-task",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\OpenServer2\\domains\\qqq"
+    ]
+  ],
+  "_from": "react-native-background-task@latest",
+  "_id": "react-native-background-task@0.1.0",
+  "_inCache": true,
+  "_location": "/react-native-background-task",
+  "_nodeVersion": "7.4.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/react-native-background-task-0.1.0.tgz_1487379590016_0.19461891776882112"
+  },
+  "_npmUser": {
+    "name": "jamesisaac",
+    "email": "james.isaac@gmail.com"
+  },
+  "_npmVersion": "4.0.5",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-native-background-task",
+    "scope": null,
+    "escapedName": "react-native-background-task",
+    "name": "react-native-background-task",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-background-task/-/react-native-background-task-0.1.0.tgz",
+  "_shasum": "7e66615bc1af770078553df2ec7fdecb4b4a1c12",
+  "_shrinkwrap": null,
+  "_spec": "react-native-background-task",
+  "_where": "C:\\OpenServer2\\domains\\qqq",
+  "author": {
+    "name": "James Isaac",
+    "email": "james.isaac@gmail.com"
+  },
+  "dependencies": {},
+  "description": "Register a single JS background task to run at periodic intervals, on Android and iOS React Native apps, even when the app is closed.",
+  "devDependencies": {
+    "flow-bin": "^0.39.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "7e66615bc1af770078553df2ec7fdecb4b4a1c12",
+    "tarball": "https://registry.npmjs.org/react-native-background-task/-/react-native-background-task-0.1.0.tgz"
+  },
+  "gitHead": "1c51417ca7947e2592b978cd0ccf3756117b0bae",
+  "maintainers": [
+    {
+      "name": "jamesisaac",
+      "email": "james.isaac@gmail.com"
+    }
+  ],
+  "name": "react-native-background-task",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "react-native": "*"
+  },
+  "readme": "# react-native-background-task\r\n\r\nRegister a single JS background task to run at periodic intervals, on Android and iOS React Native apps, even when the app is closed.\r\n\r\nThis builds on top of the native modules provided by the following two libraries:\r\n\r\n- **iOS**: [react-native-background-fetch](https://github.com/transistorsoft/react-native-background-fetch), which uses the iOS-specific `Background Fetch` technique.\r\n- **Android**: [react-native-background-job](https://github.com/vikeri/react-native-background-job), which provides a job scheduler on RN's built-in [Headless JS](https://facebook.github.io/react-native/docs/headless-js-android.html) (Android only).\r\n\r\nTo achieve a unified API, this package exposes the lowest common denominator (e.g. only support for a single task, even though Android can support multiple).\r\n\r\nFor more per-platform flexibility, those libraries should be used individually.\r\n\r\n## Installation\r\n\r\n```bash\r\n$ npm install --save react-native-background-task\r\n```\r\n\r\n* **iOS**: Follow native iOS module installation instructions from\r\n  [react-native-background-fetch](https://github.com/transistorsoft/react-native-background-fetch)\r\n* **Android**: Follow native Android module installation instructions from\r\n  [react-native-background-job](https://github.com/vikeri/react-native-background-job)\r\n\r\n## API\r\n\r\n### `register(task, options)`\r\n\r\nDefine the task that this module should be executing.\r\n\r\n- Will overwrite any previously registered task.\r\n- Should be called at the root of your main app entrypoint file.\r\n- Should `console.error` if it can't register the task\r\n\r\nParameters:\r\n\r\n* **`task`**: **required** `() => void` - Function to be executed in the background\r\n* **`options`**: `?object` - Any configuration you want to be set with\r\n  the task.  Note that most of these will only work on one platform.\r\n  \r\n  * **`period`** `number` - (Android only) Desired number of seconds between each\r\n    execution of the task.  Even on Android, the OS will only take this as a\r\n    recommendation, and will likely enforce a minimum of 15 minutes (similar to\r\n    iOS).  Default is 9000 (15 minutes)\r\n  * **`timeout`** `number` - (Android only) Number of seconds the task will have\r\n    to execute.  iOS has a hardcoded limit of 30 seconds.  Default 30 seconds.\r\n\r\n### `cancel()`\r\n\r\nCancels any currently registered task.\r\n\r\n### `finish()`\r\n\r\nMust be called at the end of your task to indicate to the OS that it's\r\nfinished.  (Only required on iOS, no-op on Android).\r\n\r\n## Example\r\n\r\n### Simple\r\n\r\n```js\r\nimport React from 'react'\r\nimport { Text } from 'react-native'\r\nimport BackgroundTask from 'react-native-background-task'\r\n\r\nBackgroundTask.register(() => {\r\n  console.log('Hello from a background task')\r\n  BackgroundTask.finish()\r\n})\r\n\r\nclass MyApp extends React.Component {\r\n  render() {\r\n    return <Text>Hello world</Text>\r\n  }\r\n}\r\n```",
+  "readmeFilename": "README.md",
+  "scripts": {
+    "flow": "flow || exit 0"
+  },
+  "version": "0.1.0"
+}
