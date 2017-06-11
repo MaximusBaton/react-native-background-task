@@ -9,7 +9,7 @@ const JOB_KEY = 'backgroundTask'
 const BackgroundTask: BackgroundTaskInterface = {
 
   register: function(task, {
-    period = 9000, // 15 minutes
+    period = 9000000, // every 15 minutes
     timeout = 30,
   } = {}) {
     // Cancel any existing tasks, as we can only have one to match iOS, and we
@@ -28,10 +28,13 @@ const BackgroundTask: BackgroundTaskInterface = {
           timeout,
           period,
           true, // persist after restart
-          appState === 'active',
           RNBackgroundJob.ANY, // network type
           false, // requires charging
           false, // requires device idle
+          appState === 'active',//false, // alwaysRunning,
+          '',    // notificationTitle,
+          '',    // notificationIcon,
+          ''    // notificationText
         )
       },
       () => { console.error(`Can't get AppState`) }
