@@ -1,6 +1,6 @@
 # react-native-background-task
 
-NB: this is a fork of [react-native-background-task](https://www.npmjs.com/package/react-native-background-task)
+**NB**: this is a fork of [react-native-background-task](https://www.npmjs.com/package/react-native-background-task)
 
 Register a single JS background task to run at periodic intervals, on Android and iOS React Native apps, even when the app is closed.
 
