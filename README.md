@@ -16,7 +16,7 @@ For more per-platform flexibility, those libraries should be used individually.
 ## Installation
 
 ```bash
-$ npm install --save react-native-background-task
+$ npm install --save https://github.com/MaximusBaton/react-native-background-task.git
 ```
 
 * **iOS**: Follow native iOS module installation instructions from
